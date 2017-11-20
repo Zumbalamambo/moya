@@ -36,11 +36,11 @@ python -m scripts.retrain \
 
 Lastly, test the trained model.
 
-'''
+```
 python -m scripts.label_image \
   --graph=tf_files/retrained_graph.pb \
   --image=tf_files/testimages/PATHTOIMAGE.jpg
-'''
+```
 
 
 
