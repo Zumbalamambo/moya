@@ -1,0 +1,38 @@
+<annotation>
+	<folder>pointing images</folder>
+	<filename>pointing_098.jpg</filename>
+	<path>/home/dongwan123/Downloads/pointing images/pointing_098.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>266</width>
+		<height>190</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>86</xmin>
+			<ymin>103</ymin>
+			<xmax>146</xmax>
+			<ymax>148</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>18</xmin>
+			<ymin>55</ymin>
+			<xmax>80</xmax>
+			<ymax>102</ymax>
+		</bndbox>
+	</object>
+</annotation>

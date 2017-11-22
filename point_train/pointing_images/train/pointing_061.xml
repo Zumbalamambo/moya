@@ -1,0 +1,26 @@
+<annotation>
+	<folder>pointing images</folder>
+	<filename>pointing_061.jpg</filename>
+	<path>/home/dongwan123/Downloads/pointing images/pointing_061.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>266</width>
+		<height>189</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>71</xmin>
+			<ymin>96</ymin>
+			<xmax>111</xmax>
+			<ymax>134</ymax>
+		</bndbox>
+	</object>
+</annotation>

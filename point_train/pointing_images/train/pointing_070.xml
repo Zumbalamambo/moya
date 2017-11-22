@@ -1,0 +1,26 @@
+<annotation>
+	<folder>pointing images</folder>
+	<filename>pointing_070.jpg</filename>
+	<path>/home/dongwan123/Downloads/pointing images/pointing_070.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>183</width>
+		<height>275</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>128</xmin>
+			<ymin>15</ymin>
+			<xmax>153</xmax>
+			<ymax>45</ymax>
+		</bndbox>
+	</object>
+</annotation>
