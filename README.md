@@ -14,17 +14,17 @@ http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4VZnqTJ2A
 
 ## TO-DO:
 ### Controlling Robot wheels
-     - [ ] Rosserial + Arduino
-     - [ ] Teleop
+- [ ] Rosserial + Arduino
+- [ ] Teleop
 ### Object Recognition
-    - [x] Train images by retraining Mobilenet
-    - [x] Capture image with webcam and classify using retrained model
-    - [ ] Output identified object to main
+- [x] Train images by retraining Mobilenet
+- [x] Capture image with webcam and classify using retrained model
+- [ ] Output identified object to main
 ### Hand Motion Detection
-    - [x] Python wrapper for Intel RealSense + OpenCV
-    - [ ] Calculate direction of hand
+- [x] Python wrapper for Intel RealSense + OpenCV
+- [ ] Calculate direction of hand
 ### UI integration
-    - [ ] Make everything work smoothly with UI
-    - [ ] (Optional) Quiz Mode for users
+- [ ] Make everything work smoothly with UI
+- [ ] (Optional) Quiz Mode for users
 
 
