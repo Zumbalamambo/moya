@@ -13,20 +13,18 @@ Setup CUDA for Tensorflow GPU support:
 http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4VZnqTJ2A
 
 ## TO-DO:
-### - [] Controlling Robot wheels
-     -[] Rosserial + Arduino
-     -[] Teleop
-### - [] Object Recognition
+### Controlling Robot wheels
+     - [ ] Rosserial + Arduino
+     - [ ] Teleop
+### Object Recognition
     - [x] Train images by retraining Mobilenet
     - [x] Capture image with webcam and classify using retrained model
-    - [] Output identified object to main
-### - [] Hand Motion Detection
+    - [ ] Output identified object to main
+### Hand Motion Detection
     - [x] Python wrapper for Intel RealSense + OpenCV
-    - [] Calculate direction of hand
-### - [] UI integration
-    - [] Make everything work smoothly with UI
-    - [] (Optional) Quiz Mode for users
-    
-
+    - [ ] Calculate direction of hand
+### UI integration
+    - [ ] Make everything work smoothly with UI
+    - [ ] (Optional) Quiz Mode for users
 
 
