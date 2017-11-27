@@ -37,10 +37,9 @@ python -m scripts.retrain \
 Lastly, test the trained model.
 
 ```
-python -m scripts.label_image \
-  --graph=tf_files/retrained_graph.pb \
-  --image=tf_files/testimages/PATHTOIMAGE.jpg
+python label_images.py
 ```
+This takes time to start up on the raspberry pi, which means that it should be preloaded when the robot starts.
 
 
 
