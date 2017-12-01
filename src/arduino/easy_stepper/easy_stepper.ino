@@ -1,6 +1,7 @@
 
 const int stepper = 11;
 const int dir = 10;
+const int led = 13;
 
 #include <ros.h>
 #include <std_msgs/Int16.h>
@@ -9,17 +10,12 @@ ros::NodeHandle nh;
 
 void messageCb( const std_msgs::Int16& toggle_msg) {
   int input = toggle_msg.data;
+  digitalWrite(led, HIGH);
   if(input<0) {
-      digitalWrite(dir, LOW);
-      for(int i=0; i<input*-2; i++) {
-      onestep();
-  }
+      digitalWrite(led, LOW);
   }
   else {
-    digitalWrite(dir, HIGH);
-      for(int i=0; i<input*2; i++) {
-      onestep();
-  }
+    digitalWrite(led, HIGH);
   }
 
 }
@@ -34,8 +30,8 @@ void setup() {
   digitalWrite(stepper, LOW);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(12, LOW);
-  digitalWrite(13, LOW);
+//  digitalWrite(12, LOW);
+//  digitalWrite(13, LOW);
   nh.initNode();
   nh.subscribe(sub);
 }
