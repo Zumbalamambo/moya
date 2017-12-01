@@ -12,12 +12,12 @@ void setup() {
 }
 
 void loop() {
-  for(int i = 0; i<200; i++) {
+  //for(int i = 0; i<200; i++) {
       // put your main code here, to run repeatedly:
   digitalWrite(stepper, HIGH);
   delayMicroseconds(100);
   digitalWrite(stepper, LOW);
   delayMicroseconds(100);
-  }
-  delay(1000);
+//  }
+  //delay(1000);
 }

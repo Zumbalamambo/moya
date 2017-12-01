@@ -47,8 +47,8 @@ class StartPage(tk.Frame):
         label.grid(row=0, column=18)
         
         canvas = tk.Canvas(self, width=600, height=400)
-        canvas.grid(row=1, column=0, columnspan=30)
-        im = Image.open("eyes.gif")
+        canvas.grid(row=0, column=0, columnspan=30)
+        im = Image.open("eyes.gif").resize((480,200))
         canvas.image = ImageTk.PhotoImage(im)        
         tk.Label(canvas,image = canvas.image).grid(row=0, column=0)
         
@@ -59,11 +59,11 @@ class StartPage(tk.Frame):
         button11 = tk.Button(self,image=self.buttonPhoto,text="Language",compound='center',
                             command=lambda: controller.show_frame(PageOne))
         
-        button11.grid(row = 2, column = 27)
+        button11.grid(row = 0, column =0)
         
         button12 = tk.Button(self, text="Quiz",
                             command=lambda: controller.show_frame(PageTwo))
-        button12.grid(row = 2, column = 28)       
+        button12.grid(row = 0, column = 0)       
         
 class PageOne(tk.Frame):
 
