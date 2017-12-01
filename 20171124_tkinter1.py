@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from PIL import ImageTk, Image
+from PIL import ImageTk
+from PIL import Image
 
 LARGE_FONT= ("Verdana", 12)
 
