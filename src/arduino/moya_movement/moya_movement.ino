@@ -1,26 +1,41 @@
 
+/* Initialize stepper motor pins */
 const int stepper = 11;
 const int dir = 10;
 const int led = 13;
 
+/* Include ROS and the messages */
 #include <ros.h>
 #include <std_msgs/Int16.h>
 
 ros::NodeHandle nh;
 
-void messageCb( const std_msgs::Int16& toggle_msg) {
-  int input = toggle_msg.data;
-  digitalWrite(led, HIGH);
-  if(input<0) {
-      digitalWrite(led, LOW);
+/* callback function used when message is receieved*/
+void messageCb( const std_msgs::Int16& cmd_vel) {
+  int input = cmd_vel.data;
+  digitalWrite(led, LOW);
+  if(input==1) {
+      digitalWrite(led, HIGH);
+  }
+  else if (input ==2) {
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+  }
+  else if (input == 3) {
+    digitalWrite(led, LOW);
   }
   else {
     digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
   }
-
 }
 
-ros::Subscriber<std_msgs::Int16> sub("toggle_led", &messageCb );
+/* Subscribe to /cmd_vel */
+ros::Subscriber<std_msgs::Int16> sub("/cmd_vel", &messageCb );
 
 void setup() {
   // put your setup code here, to run once:
