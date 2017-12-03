@@ -31,6 +31,7 @@ roscore
 
 On new terminal tabs each, run:
 ```
+sudo chmod 666 /dev/ttyACM0
 rosrun moya serial_node.py /dev/ttyACM0
 rosrun moya move_robot.py
 ```
