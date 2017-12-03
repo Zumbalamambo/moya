@@ -17,7 +17,6 @@ ros::NodeHandle nh;
 /* callback function used when message is receieved*/
 void messageCb( const std_msgs::Int16& cmd_vel) {
   input = cmd_vel.data;
-  digitalWrite(led, LOW);
 }
 
 /* Subscribe to /cmd_vel */
