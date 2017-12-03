@@ -46,21 +46,26 @@ void loop() {
   if(input==1) {
     onestep(true);
     onestep2(true);
+    digitalWrite(led, HIGH);
   }
   else if (input ==2) {
     onestep(false);
     onestep2(true);
+    digitalWrite(led, LOW);
   }
   else if (input == 3) {
+    digitalWrite(led, LOW);
     digitalWrite(led, LOW);
   }
   else if (input ==5) {
     onestep(false);
     onestep2(false);
+    digitalWrite(led, HIGH);
   }
   else if (input ==4) {
     onestep(true);
     onestep2(false);
+    digitalWrite(led, LOW);
   }
   delay(1);
 }
