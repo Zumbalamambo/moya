@@ -12,6 +12,7 @@ Control Your Robot!
 Controlling the robot:
     w
 a   s   d
+    x
 
 w: go forward
 a, d: turn left/right
@@ -24,6 +25,7 @@ moveBindings = {
         'a':(2),
         's':(3),
         'd':(4),
+        'x':(5),
         }
 
 def getKey():
@@ -48,8 +50,11 @@ def vels(direction):
         return "currently:\tdirection: stop"
     elif direction=='d':
         return "currently:\tdirection: turn right"
+    elif direction=='x':
+        return "currently:\tdirection: back"
     else:
         return "currently:\tdirection: stop"
+
 
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
