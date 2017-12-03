@@ -10,20 +10,21 @@ const int dir2 = 6;
 #include <ros.h>
 #include <std_msgs/Int16.h>
 
+/* default input is 3: stop mode */
 int input = 3;
 
 ros::NodeHandle nh;
 
 /* callback function used when message is receieved*/
 void messageCb( const std_msgs::Int16& cmd_vel) {
-  input = cmd_vel.data;
+  input = cmd_vel.data;   //set global variable to received value
 }
 
 /* Subscribe to /cmd_vel */
 ros::Subscriber<std_msgs::Int16> sub("/cmd_vel", &messageCb );
 
 void setup() {
-  // put your setup code here, to run once:
+/* Initialize all pin modes */
   pinMode(stepper1, OUTPUT);
   pinMode(dir1, OUTPUT);
   pinMode(stepper2, OUTPUT);
@@ -32,39 +33,66 @@ void setup() {
   digitalWrite(stepper1, LOW);
   digitalWrite(dir2, LOW);
   digitalWrite(stepper2, LOW);
+
+  /* MS1 and MS2 pins on LOW for full step mode on motor driver*/
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
   digitalWrite(12, LOW);
   digitalWrite(13, LOW);
+
   nh.initNode();
   nh.subscribe(sub);
 }
 
 void loop() {
+  /* ROS spinonce */
   nh.spinOnce();
-  if(input==1) {
-    onestep(true);
-    onestep2(true);
-    digitalWrite(led, HIGH);
-  }
-  else if (input ==2) {
-    onestep(false);
-    onestep2(true);
-    digitalWrite(led, LOW);
-  }
-  else if (input == 3) {
-    digitalWrite(led, LOW);
-    digitalWrite(led, LOW);
-  }
-  else if (input ==5) {
-    onestep(false);
-    onestep2(false);
-    digitalWrite(led, HIGH);
-  }
-  else if (input ==4) {
-    onestep(true);
-    onestep2(false);
-    digitalWrite(led, LOW);
+
+  /*motor control for TELEOP*/
+
+  switch (input) {
+    /* Cases 1~5 are TELEOP cases, 6~9 are automatic modes*/
+    //straight
+    case 1: 
+      gostraight();
+      digitalWrite(led, HIGH);
+      break;
+    
+    //turn left
+    case 2:
+      turnleft();
+      digitalWrite(led, LOW);
+      break;
+
+    //stop
+    case 3: 
+      digitalWrite(led, LOW);
+    break;
+    
+    //turn right
+    case 4: 
+      turnright();
+      digitalWrite(led, LOW);
+    break;
+    
+    //back
+    case 5:
+      goback();
+      digitalWrite(led, HIGH);
+    break;
+
+    //object on right
+    case 6:
+      /* go straight then turn right*/
+      for(int i = 0; i<400; i++) {
+        gostraight();
+      }
+      for(int i = 0; i<60; i++) {
+        turnright();
+      }
+      for(int i = 0; i<400; i++) {
+
+      }
   }
   delay(1);
 }
@@ -84,3 +112,39 @@ void onestep2(bool direction) {
     delayMicroseconds(2500);
 }
 
+/* move functions */
+void turnleft() {
+  onestep(false);
+  onestep2(false);
+}
+
+void turnright() {
+  onestep(true);
+  onestep2(true);
+}
+
+void gostraight() {
+  onestep(true);
+  onestep2(false);
+}
+
+void goback() {
+  onestep(false);
+  onestep2(true);
+}
+
+/* move functions, with real life angles/distances */
+
+void rotate(int angle) {
+  /* one revolution = 200 steps*/
+  if angle <0 {
+    for (int i = 0; i<angle*-1; i++) {
+      turnleft();
+    }
+  }
+  else {
+    for (int i = 0; i<angle*1; i++) {
+      turnright();
+    }
+  }
+}
