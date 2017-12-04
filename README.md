@@ -38,6 +38,8 @@ rosrun moya move_robot.py
 
 Now move the robot using w a s d keys
 
+#### Teleop Example: https://youtu.be/QBffj18QRxU
+
 
 ## TO-DO:
 ### Controlling Robot wheels
