@@ -11,7 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# ==============================================================================
+# ============================================================================
+
+#!/usr/bin/env python
 
 from __future__ import absolute_import
 from __future__ import division
@@ -24,7 +26,9 @@ import numpy as np
 import tensorflow as tf
 import cv2
 
-cap = cv2.VideoCapture(0)
+import rospy
+from std_msgs.msg import String
+
 
 def load_graph(model_file):
   graph = tf.Graph()
@@ -36,6 +40,16 @@ def load_graph(model_file):
     tf.import_graph_def(graph_def)
 
   return graph
+
+def callback(data):
+  rospy.loginfo(rospy.get_caller_id()+"I heard %s", data.data)
+  classify_image()
+
+def listener():
+  rospy.init_node('listener', anonymous=True)
+  rospy.Subscriber("chatter", String, callback)
+
+  rospy.spin()
 
 def read_tensor_from_image_file(inputimage, input_height=299, input_width=299,
 				input_mean=0, input_std=255):
@@ -60,8 +74,10 @@ def load_labels(label_file):
 
 
 
-if __name__ == "__main__":
+def classify_image():
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
+  cap = cv2.VideoCapture(0)
+
   _,img = cap.read()
   file_name="tf_files/image.jpg"
   cv2.imwrite(file_name, img)
@@ -126,8 +142,8 @@ if __name__ == "__main__":
   labels = load_labels(label_file)
   for i in top_k:
     print(labels[i], results[i])
-  cv2.imshow('input image', img)
-  cv2.waitKey(0)
   del(cap)
+  cv2.destroyAllWindows()
 
-
+if __name__=='__main__':
+  listener()
