@@ -45,11 +45,11 @@ def callback(data):
   rospy.loginfo(rospy.get_caller_id()+"I heard %s", data.data)
   classify_image()
 
-def listener():
-  rospy.init_node('listener', anonymous=True)
-  rospy.Subscriber("chatter", String, callback)
-
+def wait_for_trigger():
+  rospy.init_node('camera_trigger', anonymous=True)
+  rospy.Subscriber("/capture_image", String, callback)
   rospy.spin()
+
 
 def read_tensor_from_image_file(inputimage, input_height=299, input_width=299,
 				input_mean=0, input_std=255):
@@ -77,6 +77,8 @@ def load_labels(label_file):
 def classify_image():
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
   cap = cv2.VideoCapture(0)
+  pub = rospy.Publisher('/classify_image', String, queue_size=10)
+
 
   _,img = cap.read()
   file_name="tf_files/image.jpg"
@@ -140,10 +142,16 @@ def classify_image():
 
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
+  print(top_k)
+  print(labels)
+  
   for i in top_k:
     print(labels[i], results[i])
+
+  pub.publish(labels[top_k[0]])
+
   del(cap)
   cv2.destroyAllWindows()
 
 if __name__=='__main__':
-  listener()
+  wait_for_trigger()
