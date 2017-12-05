@@ -48,7 +48,7 @@ Now move the robot using w a s d keys
 ### Object Recognition
 - [x] Train images by retraining Mobilenet
 - [x] Capture image with webcam and classify using retrained model
-- [ ] Output identified object to main
+- [x] Output identified object to main
 ### Hand Motion Detection
 - [x] Python wrapper for Intel RealSense + OpenCV
 - [ ] Calculate direction of hand
