@@ -39,7 +39,10 @@ Lastly, test the trained model.
 ```
 python label_images.py
 ```
-This takes time to start up on the raspberry pi, which means that it should be preloaded when the robot starts.
+
+## On Raspberry Pi:
+Running label_images.py doesn't do anything until it is triggered by a message on topic /capture_image. 
+Publishes the highest matching result to /classify_image, which should be subscribed to by the UI
 
 
 
