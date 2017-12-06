@@ -72,11 +72,11 @@ def load_labels(label_file):
     label.append(l.rstrip())
   return label
 
-
+cap = cv2.VideoCapture(0)
 
 def classify_image():
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
-  cap = cv2.VideoCapture(0)
+
   pub = rospy.Publisher('/classify_image', String, queue_size=10)
 
 
@@ -150,8 +150,6 @@ def classify_image():
 
   pub.publish(labels[top_k[0]])
 
-  del(cap)
-  cv2.destroyAllWindows()
 
 if __name__=='__main__':
   wait_for_trigger()
