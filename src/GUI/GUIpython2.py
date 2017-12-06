@@ -27,7 +27,7 @@ class SeaofBTCapp(tk.Tk):
 
         self.frames = {}
         
-        for F in (StartPage, PageOne, PageTwo, PageThree, PageFour):               
+        for F in (StartPage, PageOne, PageTwo, PageThree, PageFour, PageRemote, PageTelephone, PageShoe, PageGlasses, PageVase, PageApple, PageTrump):               
             frame = F(container, self)       
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")   
@@ -35,7 +35,21 @@ class SeaofBTCapp(tk.Tk):
         self.show_frame(StartPage)
 
         def callback(data):
-            self.show_frame(PageTwo)
+            object_name = data.data
+            if object_name == "trump":
+                self.show_frame(PageTrump)
+            elif object_name == "apple":
+                self.show_frame(PageApple)
+            elif object_name == "flower vase":
+                self.show_frame(PageVase)
+            elif object_name == "remote control":
+                self.show_frame(PageRemote)
+            elif object_name == "shoes":
+                self.show_frame(PageShoe)
+            elif object_name == "glasses":
+                self.show_frame(PageGlasses)
+            else:
+                self.show_frame(PageTelephone)
 
         def receive_data():
             rospy.init_node('receive_data', anonymous=True)
@@ -58,10 +72,6 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='black')
         
-
-        
-        
-
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
         im = Image.open("Moya_UI-01.png").resize((800,400))
@@ -219,7 +229,147 @@ class PageFour(tk.Frame):
         button33 = tk.Button(self, image =  self.buttonPhoto42,compound='center', bg='white',
                             command=lambda: controller.show_frame(PageTwo))
         button33.grid(row=380, column=760)
+
+
+
+class PageRemote(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
         
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/remote control/remote_005.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageFive", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage414 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto414 = ImageTk.PhotoImage(buttonImage414)
+        button323 = tk.Button(self, image =  self.buttonPhoto414,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button323.grid(row=380, column=30)
+
+
+
+class PageTelephone(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/telephone/telephone_001.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+class PageShoe(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/shoes/shoes_001.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+
+
+class PageGlasses(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/glasses/2Q==..jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+class PageVase(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/flower vase/pic2_005.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+class PageApple(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/apple/apple1.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+class PageTrump(tk.Frame):
+
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self, parent)
+        
+        canvas = tk.Canvas(self, width=800, height=400)
+        canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
+        im4 = Image.open("../object_detection/testimages/testimages/trump/pic_001.jpg")
+        canvas.image4 = ImageTk.PhotoImage(im4)        
+        tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
+        # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
+        # label.grid(row=200, column=400)
+
+        buttonImage424 = Image.open("Home.png").resize((40,40))
+        self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage))
+        button324.grid(row=380, column=30)
+
+
 if __name__=='__main__':
     app = SeaofBTCapp()
     app.mainloop()
