@@ -300,7 +300,7 @@ class PageGlasses(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/glasses/2Q==..jpg")
+        im4 = Image.open("../object_detection/testimages/testimages/glasses/2Q==.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
