@@ -82,7 +82,7 @@ def classify_image():
 
   _,img = cap.read()
   file_name="tf_files/image.jpg"
-  cv2.imwrite(file_name, img)
+  #cv2.imwrite(file_name, img)
   model_file = "tf_files/retrained_graph.pb"
   label_file = "tf_files/retrained_labels.txt"
   input_height = 224
