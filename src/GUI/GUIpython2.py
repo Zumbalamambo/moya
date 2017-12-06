@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+
 import Tkinter as tk
-from Tkinter import ttk
 from PIL import ImageTk
 from PIL import Image
+import rospy
+from std_msgs.msg import String
 
 LARGE_FONT= ("Verdana", 12)
 
@@ -31,26 +34,34 @@ class SeaofBTCapp(tk.Tk):
 
         self.show_frame(StartPage)
 
+        def callback(data):
+            self.show_frame(PageTwo)
+
+        def receive_data():
+            rospy.init_node('receive_data', anonymous=True)
+            rospy.Subscriber('/classify_image', String, callback)
+
+
+        receive_data()
+
     def show_frame(self, cont):
         
         frame = self.frames[cont]
         frame.tkraise()
-        
-
 
 def qf(param):
     print(param)
 
 
-
 class StartPage(tk.Frame):
     
-    
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='black')
-                         
         
+
+        
+        
+
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
         im = Image.open("Moya_UI-01.png").resize((800,400))
@@ -68,7 +79,8 @@ class StartPage(tk.Frame):
         button11.grid(row = 380, column =775)        
         button12 = tk.Button(self,image=self.buttonPhoto2,compound='center',bg='white',
                              command=lambda: controller.show_frame(PageTwo))
-        button12.grid(row = 380, column = 785)       
+        button12.grid(row = 380, column = 785)    
+
         
 class PageOne(tk.Frame):
 
@@ -141,12 +153,12 @@ class PageTwo(tk.Frame):
 
         
         button32 = tk.Button(self,image=self.buttonPhoto, compound='center', bg='white',
-                            command=lambda: controller.show_frame(PageThree))
+                            command=lambda: controller.show_frame(PageThree), bd = 0)
         button32.grid(row=270, column=370)
         
-        button32 = tk.Button(self,image=self.buttonPhoto22, compound='center', bg='white',
-                            command=lambda: controller.show_frame(PageThree))
-        button32.grid(row=300, column=25)
+        button33 = tk.Button(self,image=self.buttonPhoto22, compound='center', bg='white',
+                            command=lambda: controller.show_frame(StartPage), bd=0,)
+        button33.grid(row=300, column=25)
 #        
 #        button33 = ttk.Button(self, text="PageThree",
 #                            command=lambda: controller.show_frame(PageThree))
@@ -208,7 +220,7 @@ class PageFour(tk.Frame):
                             command=lambda: controller.show_frame(PageTwo))
         button33.grid(row=380, column=760)
         
-        
-app = SeaofBTCapp()
-app.mainloop()
+if __name__=='__main__':
+    app = SeaofBTCapp()
+    app.mainloop()
         
