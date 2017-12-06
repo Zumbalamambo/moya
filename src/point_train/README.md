@@ -7,3 +7,8 @@ or simply
 ```
 wget http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2017_11_17.tar.gz
 ```
+
+from /tensorflow/research
+```
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+```
