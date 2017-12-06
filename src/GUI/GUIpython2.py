@@ -120,26 +120,43 @@ class PageOne(tk.Frame):
         button21.grid(row=380, column=0)
         button22 = tk.Button(self, image=self.buttonPhoto23, compound='center',bg='white',
                             command=lambda: controller.show_frame(PageOne))
-        button22.grid(row=380, column=775)
+        button22.grid(row=380, column=600)
         button23 = tk.Button(self, image=self.buttonPhoto24, compound='center',bg='white',
                             command=lambda: controller.show_frame(PageTwo))
-        button23.grid(row=380, column=785)
+        button23.grid(row=380, column=610)
 
-#        button24 = ttk.Button(self, text="Quiz",
-#                            command=lambda: controller.show_frame(PageOne))
-#        button24.grid(row=200, column=100)
-#
-#        button25 = ttk.Button(self, text="Quiz",
-#                            command=lambda: controller.show_frame(PageOne))
-#        button25.grid(row=200, column=300)
-#
-#        button26 = ttk.Button(self, text="Quiz",
-#                            command=lambda: controller.show_frame(PageOne))
-#        button26.grid(row=200, column=500)
-#
-#        button27 = ttk.Button(self, text="Quiz",
-#                            command=lambda: controller.show_frame(PageOne))
-#        button27.grid(row=200, column=700)        
+
+
+        buttonImage111 = Image.open("KOREA.png").resize((140,140))
+        self.buttonPhoto111 = ImageTk.PhotoImage(buttonImage111)
+
+        buttonImage222 = Image.open("USA.png").resize((140,140))
+        self.buttonPhoto222 = ImageTk.PhotoImage(buttonImage222)
+
+        buttonImage333 = Image.open("CHINA.png").resize((140,140))
+        self.buttonPhoto333 = ImageTk.PhotoImage(buttonImage333)
+
+        buttonImage444 = Image.open("JAPAN.png").resize((140,140))
+        self.buttonPhoto444 = ImageTk.PhotoImage(buttonImage444)
+
+
+
+
+        button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',
+                            command=lambda: print("hello"))
+        button111.grid(row=250, column=180)
+
+        button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',
+                            command=lambda: print("hello"))
+        button222.grid(row=250, column=320)
+
+        button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',
+                            command=lambda: print("hello"))
+        button333.grid(row=250, column=460)
+
+        button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white',
+                            command=lambda: print("hello"))
+        button444.grid(row=250, column=600)        
 
 
 class PageTwo(tk.Frame):
