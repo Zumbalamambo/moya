@@ -109,6 +109,11 @@ IMAGE_SIZE = (12, 8)
 
 with detection_graph.as_default():
   with tf.Session(graph=detection_graph) as sess:
+    image_tensor=detection_graph.get_tensor_by_name('image_tensor:0')
+    detection_boxes=detection_graph.get_tensor_by_name('detection_boxes:0')
+    detection_scores=detection_graph.get_tensor_by_name('detection_scores:0')
+    detection_classes=detection_graph.get_tensor_by_name('detection_classes:0')
+    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
     while True:
       ret, image_np = cap.read()
       # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
