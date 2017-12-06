@@ -166,16 +166,18 @@ class PageThree(tk.Frame):
         im5 = Image.open("banana.jpg").resize((350,250))
         canvas.image5 = ImageTk.PhotoImage(im5)        
         label = tk.Label(self, image=canvas.image5, font=LARGE_FONT)
-        label.grid(row=300, column=450)    
+        label.grid(row=340, column=450)    
 
         buttonImage24 = Image.open("Home.png").resize((40,40))
         self.buttonPhoto24 = ImageTk.PhotoImage(buttonImage24)
+        buttonImage25 = Image.open("Check.png").resize((80,80))
+        self.buttonPhoto25 = ImageTk.PhotoImage(buttonImage25)
         button32 = tk.Button(self, image =  self.buttonPhoto24,compound='center', bg='white',
                             command=lambda: controller.show_frame(StartPage))
         button32.grid(row=345, column=40)
-        button33 = tk.Button(self, text="정답확인",
+        button33 = tk.Button(self, image =  self.buttonPhoto25,compound='center', bg='white',
                             command=lambda: controller.show_frame(PageFour))
-        button33.grid(row=350, column=700)
+        button33.grid(row=345, column=750)
         
 
 class PageFour(tk.Frame):
