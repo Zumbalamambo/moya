@@ -20,8 +20,10 @@ void messageCb( const std_msgs::Int16& cmd_vel) {
   input = cmd_vel.data;   //set global variable to received value
 }
 
-/* Subscribe to /cmd_vel */
+std_msgs::String image_trigger;
+/* Subscribe to /cmd_vel , publish to /capture_image */
 ros::Subscriber<std_msgs::Int16> sub("/cmd_vel", &messageCb );
+ros::Publisher pub("/capture_image", &image_trigger);
 
 void setup() {
 /* Initialize all pin modes */
@@ -42,6 +44,7 @@ void setup() {
 
   nh.initNode();
   nh.subscribe(sub);
+  nh.advertise(pub)
 }
 
 void loop() {
@@ -87,12 +90,15 @@ void loop() {
       for(int i = 0; i<400; i++) {
         gostraight();
       }
-      for(int i = 0; i<60; i++) {
+      for(int i = 0; i<200; i++) {
         turnright();
       }
       for(int i = 0; i<400; i++) {
-
+        gostraigh();
       }
+      char hello[1] = " ";
+      image_trigger.data = hello;
+      pub.publish( &image_trigger);
   }
   delay(1);
 }
