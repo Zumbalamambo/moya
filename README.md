@@ -51,9 +51,9 @@ Now move the robot using w a s d keys
 - [x] Output identified object to main
 ### Hand Motion Detection
 - [x] Python wrapper for Intel RealSense + OpenCV
-- [ ] Calculate direction of hand
+- [x] Calculate direction of hand
 ### UI integration
-- [ ] Make everything work smoothly with UI
+- [x] Make everything work smoothly with UI
 - [ ] (Optional) Quiz Mode for users
 
 
