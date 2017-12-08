@@ -27,6 +27,7 @@ import tensorflow as tf
 import cv2
 
 import rospy
+from std_msgs.msg import Int16
 from std_msgs.msg import String
 
 
@@ -76,7 +77,7 @@ cap = cv2.VideoCapture(0)
 def classify_image():
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
 
-  pub = rospy.Publisher('/classify_image', String, queue_size=10)
+  pub = rospy.Publisher('/classify_image', Int16, queue_size=10)
 
 
   _,img = cap.read()
@@ -147,7 +148,22 @@ def classify_image():
   for i in top_k:
     print(labels[i], results[i])
 
-  pub.publish(labels[top_k[0]])
+  if labels[top_k[0]] == 'trump':
+    object_name = 8
+  elif labels[top_k[0]] == 'apple':
+    object_name = 3
+  elif labels[top_k[0]] == 'vase':
+    object_name = 2
+  elif labels[top_k[0]] == 'remote control':
+    object_name = 5
+  elif labels[top_k[0]] == 'trump':
+    object_name = 4
+  elif labels[top_k[0]] == 'trump':
+    object_name = 6
+  else:
+    object_name = 7
+
+  pub.publish(object_name)
 
 
 if __name__=='__main__':
