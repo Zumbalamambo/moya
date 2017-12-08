@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+#include <DFPlayer_Mini_Mp3.h>
 
 /* Initialize stepper motor pins */
 const int stepper1 = 11;
@@ -9,9 +11,11 @@ const int dir2 = 6;
 /* Include ROS and the messages */
 #include <ros.h>
 #include <std_msgs/Int16.h>
+#include <std_msgs/String.h>
 
 /* default input is 3: stop mode */
 int input = 3;
+int input1 = 0;
 
 ros::NodeHandle nh;
 
@@ -20,12 +24,25 @@ void messageCb( const std_msgs::Int16& cmd_vel) {
   input = cmd_vel.data;   //set global variable to received value
 }
 
+void messageCb1( const std_msgs::Int16& soundtrack) {
+  input1 = soundtrack.data;   //set global variable to received value
+  mp3_play(1);
+  delay(5000);
+}
+
 std_msgs::String image_trigger;
 /* Subscribe to /cmd_vel , publish to /capture_image */
 ros::Subscriber<std_msgs::Int16> sub("/cmd_vel", &messageCb );
+ros::Subscriber<std_msgs::Int16> sub1("/soundtrack", &messageCb1 );
 ros::Publisher pub("/capture_image", &image_trigger);
 
 void setup() {
+  /* Initialize MP3 Player*/
+  Serial3.begin (9600);
+  mp3_set_serial (Serial3);      // DFPlayer-mini mp3 module 시리얼 세팅
+  delay(1);                     // 볼륨값 적용을 위한 delay
+  mp3_set_volume (30);          // 볼륨조절 값 0~30
+
 /* Initialize all pin modes */
   pinMode(stepper1, OUTPUT);
   pinMode(dir1, OUTPUT);
@@ -44,7 +61,7 @@ void setup() {
 
   nh.initNode();
   nh.subscribe(sub);
-  nh.advertise(pub)
+  nh.advertise(pub);
 }
 
 void loop() {
@@ -59,6 +76,7 @@ void loop() {
     case 1: 
       gostraight();
       digitalWrite(led, HIGH);
+
       break;
     
     //turn left
@@ -94,11 +112,12 @@ void loop() {
         turnright();
       }
       for(int i = 0; i<400; i++) {
-        gostraigh();
+        gostraight();
       }
-      char hello[1] = " ";
+      char hello[1] = "g";
       image_trigger.data = hello;
       pub.publish( &image_trigger);
+      break;
   }
   delay(1);
 }
@@ -143,7 +162,7 @@ void goback() {
 
 void rotate(int angle) {
   /* one revolution = 200 steps*/
-  if angle <0 {
+  if (angle <0) {
     for (int i = 0; i<angle*-1; i++) {
       turnleft();
     }

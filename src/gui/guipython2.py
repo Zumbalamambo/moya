@@ -139,22 +139,23 @@ class PageOne(tk.Frame):
         buttonImage444 = Image.open("JAPAN.png").resize((140,140))
         self.buttonPhoto444 = ImageTk.PhotoImage(buttonImage444)
 
-
-
+        def callbackprint():
+            print("fuck")
+        
         button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',
-                            command=lambda: controller.show_frame(PageOne))
+                            command = callbackprint)
         button111.grid(row=250, column=180)
 
         button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',
-                            command=lambda: controller.show_frame(PageOne))
+                            command= callbackprint)
         button222.grid(row=250, column=320)
 
         button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',
-                            command=lambda: controller.show_frame(PageOne))
+                            command= callbackprint)
         button333.grid(row=250, column=460)
 
         button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white',
-                            command=lambda: controller.show_frame(PageOne))
+                            command= callbackprint)
         button444.grid(row=250, column=600)        
 
 
