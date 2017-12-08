@@ -5,6 +5,7 @@ from PIL import ImageTk
 from PIL import Image
 import rospy
 from std_msgs.msg import String
+from std_msgs.msg import Int16
 
 LARGE_FONT= ("Verdana", 12)
 
@@ -36,24 +37,23 @@ class SeaofBTCapp(tk.Tk):
 
         def callback(data):
             object_name = data.data
-            if object_name == "trump":
+            if object_name == 8:
                 self.show_frame(PageTrump)
-            elif object_name == "apple":
+            elif object_name == 3:
                 self.show_frame(PageApple)
-            elif object_name == "flower vase":
+            elif object_name == 2:
                 self.show_frame(PageVase)
-            elif object_name == "remote control":
+            elif object_name == 5:
                 self.show_frame(PageRemote)
-            elif object_name == "shoes":
+            elif object_name == 4:
                 self.show_frame(PageShoe)
-            elif object_name == "glasses":
+            elif object_name == 6:
                 self.show_frame(PageGlasses)
             else:
                 self.show_frame(PageTelephone)
 
         def receive_data():
-            rospy.init_node('receive_data', anonymous=True)
-            rospy.Subscriber('/classify_image', String, callback)
+            rospy.Subscriber('/classify_image', Int16, callback)
 
 
         receive_data()
@@ -93,6 +93,7 @@ class StartPage(tk.Frame):
 
         
 class PageOne(tk.Frame):
+
 
     def __init__(self,parent,controller):
         tk.Frame.__init__(self, parent)
@@ -138,24 +139,37 @@ class PageOne(tk.Frame):
 
         buttonImage444 = Image.open("JAPAN.png").resize((140,140))
         self.buttonPhoto444 = ImageTk.PhotoImage(buttonImage444)
-
-        def callbackprint():
-            print("fuck")
         
+        def pub_korean():
+            pub_audio = rospy.Publisher('/language', Int16, queue_size=10)
+            pub_audio.publish(1)
+        
+        def pub_english():
+            pub_audio1 = rospy.Publisher('/language', Int16, queue_size=10)
+            pub_audio1.publish(11)
+
+        def pub_chinese():
+            pub_audio2 = rospy.Publisher('/language', Int16, queue_size=10)
+            pub_audio2.publish(21)
+
+        def pub_japanese():
+            pub_audio3 = rospy.Publisher('/language', Int16, queue_size=10)
+            pub_audio3.publish(31)
+
         button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',
-                            command = callbackprint)
+                            command = pub_korean)
         button111.grid(row=250, column=180)
 
         button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',
-                            command= callbackprint)
+                            command= pub_english)
         button222.grid(row=250, column=320)
 
         button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',
-                            command= callbackprint)
+                            command= pub_chinese)
         button333.grid(row=250, column=460)
 
         button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white',
-                            command= callbackprint)
+                            command= pub_japanese)
         button444.grid(row=250, column=600)        
 
 
@@ -388,6 +402,8 @@ class PageTrump(tk.Frame):
 
 
 if __name__=='__main__':
+    rospy.init_node('receive_data', anonymous=True)
+
     app = SeaofBTCapp()
     app.mainloop()
         

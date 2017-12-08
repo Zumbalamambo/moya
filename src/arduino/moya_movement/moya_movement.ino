@@ -15,7 +15,8 @@ const int dir2 = 6;
 
 /* default input is 3: stop mode */
 int input = 3;
-int input1 = 0;
+int sound_language = 1;
+int object_name = 0;
 
 ros::NodeHandle nh;
 
@@ -24,22 +25,30 @@ void messageCb( const std_msgs::Int16& cmd_vel) {
   input = cmd_vel.data;   //set global variable to received value
 }
 
-void messageCb1( const std_msgs::Int16& soundtrack) {
-  input1 = soundtrack.data;   //set global variable to received value
-  mp3_play(1);
-  delay(5000);
+/* callback function for language */
+void messageCb1( const std_msgs::Int16& language) {
+  sound_language = language.data;   //set global variable to received value
+  mp3_play(sound_language);
 }
+
+/* callback function for soundtrack */
+void messageCb2(const std_msgs::Int16& classify_image) {
+  object_name = classify_image.data;
+  mp3_play(sound_language-1+object_name);
+}
+
 
 std_msgs::String image_trigger;
 /* Subscribe to /cmd_vel , publish to /capture_image */
 ros::Subscriber<std_msgs::Int16> sub("/cmd_vel", &messageCb );
-ros::Subscriber<std_msgs::Int16> sub1("/soundtrack", &messageCb1 );
+ros::Subscriber<std_msgs::Int16> sub1("/language", &messageCb1 );
+ros::Subscriber<std_msgs::Int16> sub2("/classify_image", &messageCb2);
 ros::Publisher pub("/capture_image", &image_trigger);
 
 void setup() {
   /* Initialize MP3 Player*/
-  Serial3.begin (9600);
-  mp3_set_serial (Serial3);      // DFPlayer-mini mp3 module 시리얼 세팅
+  Serial3.begin(9600);
+  mp3_set_serial(Serial3);      // DFPlayer-mini mp3 module 시리얼 세팅
   delay(1);                     // 볼륨값 적용을 위한 delay
   mp3_set_volume (30);          // 볼륨조절 값 0~30
 
@@ -61,6 +70,8 @@ void setup() {
 
   nh.initNode();
   nh.subscribe(sub);
+  nh.subscribe(sub1);
+  nh.subscribe(sub2);
   nh.advertise(pub);
 }
 
@@ -76,7 +87,6 @@ void loop() {
     case 1: 
       gostraight();
       digitalWrite(led, HIGH);
-
       break;
     
     //turn left
@@ -114,11 +124,10 @@ void loop() {
       for(int i = 0; i<400; i++) {
         gostraight();
       }
-      char hello[1] = "g";
-      image_trigger.data = hello;
-      pub.publish( &image_trigger);
+
       break;
   }
+  
   delay(1);
 }
 

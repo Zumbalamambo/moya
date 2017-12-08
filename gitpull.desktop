@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=gitpull
+Exec= git pull
+Terminal=true
+Type=Application
