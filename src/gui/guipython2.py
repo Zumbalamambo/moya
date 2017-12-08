@@ -141,21 +141,20 @@ class PageOne(tk.Frame):
 
 
 
-
         button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',
-                            command=lambda: print("hello"))
+                            command=lambda: controller.show_frame(PageOne))
         button111.grid(row=250, column=180)
 
         button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',
-                            command=lambda: print("hello"))
+                            command=lambda: controller.show_frame(PageOne))
         button222.grid(row=250, column=320)
 
         button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',
-                            command=lambda: print("hello"))
+                            command=lambda: controller.show_frame(PageOne))
         button333.grid(row=250, column=460)
 
         button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white',
-                            command=lambda: print("hello"))
+                            command=lambda: controller.show_frame(PageOne))
         button444.grid(row=250, column=600)        
 
 
@@ -277,7 +276,7 @@ class PageTelephone(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/telephone/telephone_001.jpg")
+        im4 = Image.open("AnswerTelephone.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
@@ -296,7 +295,7 @@ class PageShoe(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/shoes/shoes_001.jpg")
+        im4 = Image.open("AnswerShoes.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
@@ -317,7 +316,7 @@ class PageGlasses(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/glasses/2Q==.jpg")
+        im4 = Image.open("AnswerGlasses.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
@@ -336,7 +335,7 @@ class PageVase(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/flower vase/pic2_005.jpg")
+        im4 = Image.open("AnswerVase.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
@@ -355,7 +354,7 @@ class PageApple(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/apple/apple1.jpg")
+        im4 = Image.open("AnswerApple.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
@@ -374,7 +373,7 @@ class PageTrump(tk.Frame):
         
         canvas = tk.Canvas(self, width=800, height=400)
         canvas.grid(row=0, column=0, columnspan=800, rowspan=400)
-        im4 = Image.open("../object_detection/testimages/testimages/trump/pic_001.jpg")
+        im4 = Image.open("AnswerTrump.jpg")
         canvas.image4 = ImageTk.PhotoImage(im4)        
         tk.Label(canvas, image = canvas.image4, bg='white').grid(row=0, column=0)
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
