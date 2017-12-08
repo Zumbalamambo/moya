@@ -84,10 +84,10 @@ class StartPage(tk.Frame):
         self.buttonPhoto2 = ImageTk.PhotoImage(buttonImage2)
         
 
-        button11 = tk.Button(self,image=self.buttonPhoto,compound='center',bg='white',
+        button11 = tk.Button(self,image=self.buttonPhoto,compound='center',bg='white',bd = 0,
                             command=lambda: controller.show_frame(PageOne))        
         button11.grid(row = 380, column =775)        
-        button12 = tk.Button(self,image=self.buttonPhoto2,compound='center',bg='white',
+        button12 = tk.Button(self,image=self.buttonPhoto2,compound='center',bg='white',bd = 0,
                              command=lambda: controller.show_frame(PageTwo))
         button12.grid(row = 380, column = 785)    
 
@@ -107,7 +107,7 @@ class PageOne(tk.Frame):
         canvas.image2 = ImageTk.PhotoImage(im2)        
         tk.Label(canvas, image = canvas.image2, bg='white').grid(row=0, column=0)
         
-        buttonImage22 = Image.open("Home.png").resize((40,40))
+        buttonImage22 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto22 = ImageTk.PhotoImage(buttonImage22)
         
         buttonImage23 = Image.open("Save.png").resize((80,80))
@@ -116,28 +116,28 @@ class PageOne(tk.Frame):
         buttonImage24 = Image.open("Quiz.png").resize((80,80))
         self.buttonPhoto24 = ImageTk.PhotoImage(buttonImage24)
         
-        button21 = tk.Button(self,image=self.buttonPhoto22, compound='center',bg='white',
+        button21 = tk.Button(self,image=self.buttonPhoto22, compound='center',bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
-        button21.grid(row=380, column=0)
-        button22 = tk.Button(self, image=self.buttonPhoto23, compound='center',bg='white',
+        button21.grid(row=360, column=0)
+        button22 = tk.Button(self, image=self.buttonPhoto23, compound='center',bg='white',bd = 0,
                             command=lambda: controller.show_frame(PageOne))
-        button22.grid(row=380, column=600)
-        button23 = tk.Button(self, image=self.buttonPhoto24, compound='center',bg='white',
+        button22.grid(row=360, column=630)
+        button23 = tk.Button(self, image=self.buttonPhoto24, compound='center',bg='white',bd = 0,
                             command=lambda: controller.show_frame(PageTwo))
-        button23.grid(row=380, column=610)
+        button23.grid(row=360, column=710)
 
 
 
-        buttonImage111 = Image.open("KOREA.png").resize((140,140))
+        buttonImage111 = Image.open("KOREA.png").resize((130,130))
         self.buttonPhoto111 = ImageTk.PhotoImage(buttonImage111)
 
-        buttonImage222 = Image.open("USA.png").resize((140,140))
+        buttonImage222 = Image.open("USA.png").resize((130,130))
         self.buttonPhoto222 = ImageTk.PhotoImage(buttonImage222)
 
-        buttonImage333 = Image.open("CHINA.png").resize((140,140))
+        buttonImage333 = Image.open("CHINA.png").resize((130,130))
         self.buttonPhoto333 = ImageTk.PhotoImage(buttonImage333)
 
-        buttonImage444 = Image.open("JAPAN.png").resize((140,140))
+        buttonImage444 = Image.open("JAPAN.png").resize((130,130))
         self.buttonPhoto444 = ImageTk.PhotoImage(buttonImage444)
         
         def pub_korean():
@@ -156,21 +156,21 @@ class PageOne(tk.Frame):
             pub_audio3 = rospy.Publisher('/language', Int16, queue_size=10)
             pub_audio3.publish(31)
 
-        button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',
+        button111 = tk.Button(self, image=self.buttonPhoto111, compound='center',bg='white',bd = 0,
                             command = pub_korean)
-        button111.grid(row=250, column=180)
+        button111.grid(row=250, column=70)
 
-        button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',
+        button222 = tk.Button(self, image=self.buttonPhoto222, compound='center',bg='white',bd = 0,
                             command= pub_english)
-        button222.grid(row=250, column=320)
+        button222.grid(row=250, column=210)
 
-        button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',
+        button333 = tk.Button(self, image=self.buttonPhoto333, compound='center',bg='white',bd = 0,
                             command= pub_chinese)
-        button333.grid(row=250, column=460)
+        button333.grid(row=250, column=350)
 
-        button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white',
+        button444 = tk.Button(self, image=self.buttonPhoto444, compound='center',bg='white', bd = 0,
                             command= pub_japanese)
-        button444.grid(row=250, column=600)        
+        button444.grid(row=250, column=490)        
 
 
 class PageTwo(tk.Frame):
@@ -189,17 +189,17 @@ class PageTwo(tk.Frame):
         
         buttonImage = Image.open("Start.png").resize((220,220))
         self.buttonPhoto = ImageTk.PhotoImage(buttonImage)
-        buttonImage22= Image.open("Home.png").resize((40,40))
+        buttonImage22= Image.open("Home.png").resize((70,70))
         self.buttonPhoto22 = ImageTk.PhotoImage(buttonImage22)
 
         
         button32 = tk.Button(self,image=self.buttonPhoto, compound='center', bg='white',
                             command=lambda: controller.show_frame(PageThree), bd = 0)
-        button32.grid(row=270, column=370)
+        button32.grid(row=348, column=350)
         
         button33 = tk.Button(self,image=self.buttonPhoto22, compound='center', bg='white',
-                            command=lambda: controller.show_frame(StartPage), bd=0,)
-        button33.grid(row=300, column=25)
+                            command=lambda: controller.show_frame(StartPage), bd=0)
+        button33.grid(row=350, column=20)
 #        
 #        button33 = ttk.Button(self, text="PageThree",
 #                            command=lambda: controller.show_frame(PageThree))
@@ -219,18 +219,18 @@ class PageThree(tk.Frame):
         im5 = Image.open("banana.jpg").resize((350,250))
         canvas.image5 = ImageTk.PhotoImage(im5)        
         label = tk.Label(self, image=canvas.image5, font=LARGE_FONT)
-        label.grid(row=340, column=450)    
+        label.grid(row=360, column=450)    
 
-        buttonImage24 = Image.open("Home.png").resize((40,40))
+        buttonImage24 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto24 = ImageTk.PhotoImage(buttonImage24)
         buttonImage25 = Image.open("Check.png").resize((80,80))
         self.buttonPhoto25 = ImageTk.PhotoImage(buttonImage25)
-        button32 = tk.Button(self, image =  self.buttonPhoto24,compound='center', bg='white',
+        button32 = tk.Button(self, image =  self.buttonPhoto24,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
-        button32.grid(row=345, column=40)
-        button33 = tk.Button(self, image =  self.buttonPhoto25,compound='center', bg='white',
+        button32.grid(row=370, column=30)
+        button33 = tk.Button(self, image =  self.buttonPhoto25,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(PageFour))
-        button33.grid(row=345, column=750)
+        button33.grid(row=370, column=770)
         
 
 class PageFour(tk.Frame):
@@ -248,18 +248,18 @@ class PageFour(tk.Frame):
         
         
         
-        buttonImage41 = Image.open("Home.png").resize((40,40))
+        buttonImage41 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto41 = ImageTk.PhotoImage(buttonImage41)
         buttonImage42 = Image.open("Next.png").resize((80,80))
         self.buttonPhoto42 = ImageTk.PhotoImage(buttonImage42)
         
         
-        button32 = tk.Button(self, image =  self.buttonPhoto41,compound='center', bg='white',
+        button32 = tk.Button(self, image =  self.buttonPhoto41,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
-        button32.grid(row=380, column=30)
-        button33 = tk.Button(self, image =  self.buttonPhoto42,compound='center', bg='white',
+        button32.grid(row=385, column=25)
+        button33 = tk.Button(self, image =  self.buttonPhoto42,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(PageTwo))
-        button33.grid(row=380, column=760)
+        button33.grid(row=385, column=780)
 
 
 
@@ -276,9 +276,9 @@ class PageRemote(tk.Frame):
         # label = tk.Label(self, text="PageFive", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage414 = Image.open("Home.png").resize((40,40))
+        buttonImage414 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto414 = ImageTk.PhotoImage(buttonImage414)
-        button323 = tk.Button(self, image =  self.buttonPhoto414,compound='center', bg='white',
+        button323 = tk.Button(self, image =  self.buttonPhoto414,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button323.grid(row=380, column=30)
 
@@ -297,9 +297,9 @@ class PageTelephone(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
@@ -316,9 +316,9 @@ class PageShoe(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
@@ -337,9 +337,9 @@ class PageGlasses(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
@@ -356,9 +356,9 @@ class PageVase(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
@@ -375,9 +375,9 @@ class PageApple(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
@@ -394,9 +394,9 @@ class PageTrump(tk.Frame):
         # label = tk.Label(self, text="PageSix", font=LARGE_FONT)
         # label.grid(row=200, column=400)
 
-        buttonImage424 = Image.open("Home.png").resize((40,40))
+        buttonImage424 = Image.open("Home.png").resize((70,70))
         self.buttonPhoto424 = ImageTk.PhotoImage(buttonImage424)
-        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',
+        button324 = tk.Button(self, image =  self.buttonPhoto424,compound='center', bg='white',bd = 0,
                             command=lambda: controller.show_frame(StartPage))
         button324.grid(row=380, column=30)
 
