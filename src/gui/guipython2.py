@@ -91,10 +91,7 @@ class StartPage(tk.Frame):
                              command=lambda: controller.show_frame(PageTwo))
         button12.grid(row = 380, column = 785)    
 
-        
 class PageOne(tk.Frame):
-
-
     def __init__(self,parent,controller):
         tk.Frame.__init__(self, parent)
         

@@ -111,39 +111,24 @@ void loop() {
       goback();
       digitalWrite(led, HIGH);
     break;
-
-    //object on right
-    case 6:
-      /* go straight then turn right*/
-      for(int i = 0; i<400; i++) {
-        gostraight();
-      }
-      for(int i = 0; i<200; i++) {
-        turnright();
-      }
-      for(int i = 0; i<400; i++) {
-        gostraight();
-      }
-
-      break;
   }
   
-  delay(1);
+  
 }
 
 void onestep(bool direction) {
     digitalWrite(dir1, direction);
     digitalWrite(stepper1, HIGH);
-    delayMicroseconds(2500);
+    delayMicroseconds(2000);
     digitalWrite(stepper1, LOW);
-    delayMicroseconds(2500);
+    delayMicroseconds(2000);
 }
 void onestep2(bool direction) {
     digitalWrite(dir2, direction);
     digitalWrite(stepper2, HIGH);
-    delayMicroseconds(2500);
+    delayMicroseconds(2000);
     digitalWrite(stepper2, LOW);
-    delayMicroseconds(2500);
+    delayMicroseconds(2000);
 }
 
 /* move functions */

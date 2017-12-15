@@ -91,7 +91,6 @@ def classify_image():
   input_std = 128
   input_layer = "input"
   output_layer = "final_result"
-
   parser = argparse.ArgumentParser()
   parser.add_argument("--image", help="image to be processed")
   parser.add_argument("--graph", help="graph/model to be executed")
@@ -152,13 +151,13 @@ def classify_image():
     object_name = 8
   elif labels[top_k[0]] == 'apple':
     object_name = 3
-  elif labels[top_k[0]] == 'vase':
+  elif labels[top_k[0]] == 'flower vase':
     object_name = 2
   elif labels[top_k[0]] == 'remote control':
     object_name = 5
-  elif labels[top_k[0]] == 'trump':
+  elif labels[top_k[0]] == 'shoes':
     object_name = 4
-  elif labels[top_k[0]] == 'trump':
+  elif labels[top_k[0]] == 'glasses':
     object_name = 6
   else:
     object_name = 7
