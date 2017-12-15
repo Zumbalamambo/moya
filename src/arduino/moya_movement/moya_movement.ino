@@ -119,16 +119,16 @@ void loop() {
 void onestep(bool direction) {
     digitalWrite(dir1, direction);
     digitalWrite(stepper1, HIGH);
-    delayMicroseconds(2000);
+    delayMicroseconds(2500);
     digitalWrite(stepper1, LOW);
-    delayMicroseconds(2000);
+    delayMicroseconds(2500);
 }
 void onestep2(bool direction) {
     digitalWrite(dir2, direction);
     digitalWrite(stepper2, HIGH);
-    delayMicroseconds(2000);
+    delayMicroseconds(2500);
     digitalWrite(stepper2, LOW);
-    delayMicroseconds(2000);
+    delayMicroseconds(2500);
 }
 
 /* move functions */
