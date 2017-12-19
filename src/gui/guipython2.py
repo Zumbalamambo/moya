@@ -49,8 +49,10 @@ class SeaofBTCapp(tk.Tk):
                 self.show_frame(PageShoe)
             elif object_name == 6:
                 self.show_frame(PageGlasses)
-            else:
+            elif object_name==7:
                 self.show_frame(PageTelephone)
+            else:
+                self.show_frame(PageFour)
 
         def receive_data():
             rospy.Subscriber('/classify_image', Int16, callback)
