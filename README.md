@@ -1,5 +1,5 @@
 # MOYA - Deep Learning 기반 사물인식 기술을 이용한 언어학습 보조로봇
-#SK CREATIVE CHALLENGE 2017 대상!
+# SK CREATIVE CHALLENGE 2017 대상!
 
 ![](./moya.PNG)
 ![](./1512722887971.jpg)
