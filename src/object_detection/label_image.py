@@ -55,7 +55,7 @@ def read_tensor_from_image_file(inputimage, input_height=299, input_width=299,
 				input_mean=0, input_std=255):
   input_name = "file_reader"
   output_name = "normalized"
-  
+
   float_caster = tf.cast(inputimage, tf.float32)
   dims_expander = tf.expand_dims(float_caster, 0);
   resized = tf.image.resize_bilinear(dims_expander, [input_height, input_width])
@@ -73,6 +73,8 @@ def load_labels(label_file):
   return label
 
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 400)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 400)
 
 def classify_image():
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
@@ -88,6 +90,7 @@ def classify_image():
   input_height = 224
   input_width = 224
   input_mean = 128
+
   input_std = 128
   input_layer = "input"
   output_layer = "final_result"
@@ -143,7 +146,7 @@ def classify_image():
   labels = load_labels(label_file)
   print(top_k)
   print(labels)
-  
+
   for i in top_k:
     print(labels[i], results[i])
 
