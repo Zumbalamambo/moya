@@ -1,17 +1,3 @@
-# Copyright 2017 The TensorFlow Authors. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ============================================================================
 
 #!/usr/bin/env python
 
@@ -30,7 +16,6 @@ import rospy
 from std_msgs.msg import Int16
 from std_msgs.msg import String
 
-
 def load_graph(model_file):
   graph = tf.Graph()
   graph_def = tf.GraphDef()
@@ -45,13 +30,11 @@ def load_graph(model_file):
 def callback(data):
   cap = cv2.VideoCapture(0)
   cap.set(cv2.CAP_PROP_FRAME_WIDTH, 224)
-  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 224) 
+  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 224)
   _,img = cap.read()
   classify_image(img)
-  cv2.imshow('img', img)
-  cv2.waitKey(0)
   cap.release
-  cv2.destroyAllWindows()
+
 
 def wait_for_trigger():
   rospy.init_node('camera_trigger', anonymous=True)
@@ -128,7 +111,6 @@ def classify_image(img):
     input_layer = args.input_layer
   if args.output_layer:
     output_layer = args.output_layer
-
   graph = load_graph(model_file)
   t = read_tensor_from_image_file(img,
                                   input_height=input_height,
@@ -140,7 +122,6 @@ def classify_image(img):
   output_name = "import/" + output_layer
   input_operation = graph.get_operation_by_name(input_name);
   output_operation = graph.get_operation_by_name(output_name);
-
   with tf.Session(graph=graph) as sess:
     results = sess.run(output_operation.outputs[0],
                       {input_operation.outputs[0]: t})
