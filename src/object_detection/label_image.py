@@ -43,7 +43,12 @@ def load_graph(model_file):
   return graph
 
 def callback(data):
-  classify_image()
+  cap = cv2.VideoCapture(0)
+  cap.set(cv2.CAP_PROP_FRAME_WIDTH, 400)
+  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 400) 
+  _,img = cap.read()
+  classify_image(img)
+  cap.release()
 
 def wait_for_trigger():
   rospy.init_node('camera_trigger', anonymous=True)
@@ -72,17 +77,13 @@ def load_labels(label_file):
     label.append(l.rstrip())
   return label
 
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 400)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 400)
 
-def classify_image():
+
+def classify_image(img):
   # file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
 
   pub = rospy.Publisher('/classify_image', Int16, queue_size=10)
 
-
-  _,img = cap.read()
   file_name="tf_files/image.jpg"
   #cv2.imwrite(file_name, img)
   model_file = "tf_files/retrained_graph.pb"
