@@ -44,11 +44,14 @@ def load_graph(model_file):
 
 def callback(data):
   cap = cv2.VideoCapture(0)
-  cap.set(cv2.CAP_PROP_FRAME_WIDTH, 400)
-  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 400) 
+  cap.set(cv2.CAP_PROP_FRAME_WIDTH, 224)
+  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 224) 
   _,img = cap.read()
   classify_image(img)
+  cv2.imshow('img', img)
+  cv2.waitKey(0)
   cap.release
+  cv2.destroyAllWindows()
 
 def wait_for_trigger():
   rospy.init_node('camera_trigger', anonymous=True)
