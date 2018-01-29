@@ -48,7 +48,7 @@ def callback(data):
   cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 400) 
   _,img = cap.read()
   classify_image(img)
-  cap.release()
+  cap.release
 
 def wait_for_trigger():
   rospy.init_node('camera_trigger', anonymous=True)
