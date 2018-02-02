@@ -34,6 +34,22 @@ rosrun moya serial_node.py /dev/ttyACM0
 rosrun moya move_robot.py
 ```
 
+### Running Robot
+
+```
+cd catkin_ws/src/moya/src/transmit_image
+python send_image.py
+cd ../gui
+python guipython2.py
+```
+
+On computer, run
+
+```
+cd catkin_ws/src/moya/src/object_detection
+python label_image.py
+```
+
 Now move the robot using w a s d keys
 
 #### Teleop Example: https://youtu.be/QBffj18QRxU
