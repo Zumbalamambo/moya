@@ -15,6 +15,8 @@ import cv2
 import rospy
 from std_msgs.msg import Int16
 from std_msgs.msg import String
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 
 def load_graph(model_file):
   graph = tf.Graph()
@@ -28,17 +30,13 @@ def load_graph(model_file):
   return graph
 
 def callback(data):
-  cap = cv2.VideoCapture(0)
-  cap.set(cv2.CAP_PROP_FRAME_WIDTH, 224)
-  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 224)
-  _,img = cap.read()
+  img = bridge.imgmsg_to_cv2(data, "bgr8")
   classify_image(img)
-  cap.release
 
 
 def wait_for_trigger():
   rospy.init_node('camera_trigger', anonymous=True)
-  rospy.Subscriber("/capture_image", String, callback)
+  rospy.Subscriber("/originalImage", Image, callback)
   rospy.spin()
 
 
@@ -154,4 +152,5 @@ def classify_image(img):
 
 
 if __name__=='__main__':
+  bridge = CvBridge()
   wait_for_trigger()
